@@ -1,22 +1,22 @@
 #include <iostream>
 #include <stdio.h>
 
-const double exerciseShoePrice = 225.00;
-const int weeklyHours = 40;
-const double hourlyWage = 7.0;
-const double salariedCommissionRate = 0.10;
-const double pureCommissionRate = 0.20;
-const double unitBonus = 20.00;
+const double kExerciseShoePrice = 225.00;
+const int kWeeklyHours = 40;
+const double kHourlyWage = 7.0;
+const double kSalariedCommissionRate = 0.10;
+const double kPureCommissionRate = 0.20;
+const double kUnitBonus = 20.00;
 
 double CaluclateSalariedCommissionComp(double weeklySales) {
-    double hourlyPay = weeklyHours * hourlyWage;
-    double commission = (weeklySales * exerciseShoePrice) * salariedCommissionRate;
+    double hourlyPay = kWeeklyHours * kHourlyWage;
+    double commission = (weeklySales * kExerciseShoePrice) * kSalariedCommissionRate;
     return hourlyPay + commission;
 }
 
 double CaluclateCommissionOnlyComp(double weeklySales) {
-    double commission = (weeklySales * exerciseShoePrice) * pureCommissionRate;
-    double totalUnitBonus = weeklySales * unitBonus;
+    double commission = (weeklySales * kExerciseShoePrice) * kPureCommissionRate;
+    double totalUnitBonus = weeklySales * kUnitBonus;
     return commission + totalUnitBonus;
 }
 
