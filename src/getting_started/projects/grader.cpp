@@ -16,7 +16,7 @@ int CollectInputFromUser(std::string message) {
     int input;
     std::cout << message + ": ";
     if(!(std::cin >> input)) {
-        throw std::invalid_argument("Expected integer input");    
+        throw std::invalid_argument("Expected integer input.");    
     }
 
     return input;
@@ -37,12 +37,18 @@ double CalculateAssignmentGrade(int numAssignments, double assignmentWeight) {
 }
 
 int main() {
-    int assignmentGrade = CalculateAssignmentGrade(kNumAssignments, kAssignmentWeight);    
-    int midtermGrade = CalculateWeightedGrade(CollectInputFromUser(kMidtermMsg), kMidtermWeight);
-    int finalGrade = CalculateWeightedGrade(CollectInputFromUser(kFinalMsg), kFinalWeight);
-    int participationGrade = CalculateWeightedGrade(CollectInputFromUser(kParticipationMsg), kParticipationWeight);
 
-    int classGrade = assignmentGrade + midtermGrade + finalGrade + participationGrade;
+    try {
+        int assignmentGrade = CalculateAssignmentGrade(kNumAssignments, kAssignmentWeight);    
+        int midtermGrade = CalculateWeightedGrade(CollectInputFromUser(kMidtermMsg), kMidtermWeight);
+        int finalGrade = CalculateWeightedGrade(CollectInputFromUser(kFinalMsg), kFinalWeight);
+        int participationGrade = CalculateWeightedGrade(CollectInputFromUser(kParticipationMsg), kParticipationWeight);
 
-    std::cout << "The final grade is: " << classGrade << std::endl;
+        int classGrade = assignmentGrade + midtermGrade + finalGrade + participationGrade;
+
+        std::cout << "The final grade is: " << classGrade << std::endl;
+    } catch (std::invalid_argument &e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
 }
