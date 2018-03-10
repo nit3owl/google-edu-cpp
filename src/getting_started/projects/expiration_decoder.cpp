@@ -45,12 +45,11 @@ int main() {
 
     try {
         ValidateInput(input);
+        std::cout << DecodeMonth(input[0]) << "/" << DecodeDay(input[1]) << DecodeDay(input[2]) << "/" << DecodeYear(input[3]) << std::endl;
     } catch (std::invalid_argument &e) {
         std::cout << e.what() << std::endl;
         return 1;
     }
-    
-    std::cout << DecodeMonth(input[0]) << "/" << DecodeDay(input[1]) << DecodeDay(input[2]) << "/" << DecodeYear(input[3]) << std::endl;
 
     return 0;
 }
