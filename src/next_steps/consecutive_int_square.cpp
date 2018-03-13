@@ -18,9 +18,15 @@ void calculateConseqIntSumsWithMemo() {
     memo[0] = 0;
     for(long i = 1; i < 2000; i++) {
         long square = i*i;
-        for(long j = 1; j < square/2; j++) {
-            long sum = memo[j - 1] + j;
-            memo[j] = sum;
+        for(long j = i; j < square/2; j++) {
+            long sum;
+            if(memo[j] == 0) {
+                long sum = memo[j - 1] + j;
+                memo[j] = sum;
+            } else {
+                sum = memo[j];
+            }
+            
             if (sum == square) {
                 std::cout << "Match! i = " << i << ", square = " << square << ", sum of 1 - " << j << std::endl;
             }
