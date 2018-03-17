@@ -1,10 +1,13 @@
 #include "Database.h"
 #include <unordered_map>
+#include <list>
 
 std::unordered_map<std::string, Composer> composers;
 
 Database::Database() {}
 Database::~Database(){}
+
+void printList(std::list<Composer>);
 
 // Add a new composer using operations in the Composer class.
 // For convenience, we return a reference (pointer) to the new record.
@@ -37,5 +40,23 @@ void Database::DisplayAll(){
 }
 // Sort database records by rank and then display all.
 void Database::DisplayByRank() {
+    std::list<Composer> list;
+    std::unordered_map<std::string, Composer>::iterator it = composers.begin();
 
+    while(it != composers.end()) {
+        list.push_back(it->second);
+        it++;
+    }
+
+    list.sort([](Composer &f, Composer &s) { return f.ranking() < s.ranking(); });
+    printList(list);
+}
+
+void printList(std::list<Composer> list) {
+    std::list<Composer>::iterator lit = list.begin();
+    while(lit != list.end()) {
+        lit->Display();
+        std::cout << std::endl;
+        lit++;
+    }
 }

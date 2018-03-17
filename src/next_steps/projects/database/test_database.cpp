@@ -27,7 +27,10 @@ int main()
          << std::endl;
     myDB.DisplayAll();
 
-    std::cout << "Beethoven: " << std::endl;
+    std::cout << "Load Beethoven: " << std::endl;
     Composer comp = myDB.GetComposer("Beethoven");
     comp.Display();
+
+    std::cout << std::endl << "Display sorted" << std::endl;
+    myDB.DisplayByRank();
 }
