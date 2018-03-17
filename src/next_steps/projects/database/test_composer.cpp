@@ -4,13 +4,12 @@
 
 #include <iostream>
 #include "Composer.h"
-using namespace std;
 
 int main()
 {
-    cout << endl
-         << "Testing the Composer class." << endl
-         << endl;
+    std::cout << std::endl
+         << "Testing the Composer class." << std::endl
+         << std::endl;
 
     Composer composer;
 

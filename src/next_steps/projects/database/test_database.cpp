@@ -3,12 +3,10 @@
 // Description: Test driver for a database of Composer records.
 #include <iostream>
 #include "Database.h"
-using namespace std;
 
 int main()
 {
     Database myDB;
-
     // Remember that AddComposer returns a reference to the new record.
     Composer &comp1 = myDB.AddComposer("Ludwig van", "Beethoven", "Romantic", 1770,
                                        "Beethoven was completely deaf during the latter part of his life - he never "
@@ -24,8 +22,12 @@ int main()
                                        "that he was poisoned.");
     comp3.Promote(2);
 
-    cout << endl
-         << "all Composers: " << endl
-         << endl;
+    std::cout << std::endl
+         << "all Composers: " << std::endl
+         << std::endl;
     myDB.DisplayAll();
+
+    std::cout << "Beethoven: " << std::endl;
+    Composer comp = myDB.GetComposer("Beethoven");
+    comp.Display();
 }
