@@ -1,4 +1,4 @@
-// test_database.cpp, Maggie Johnson
+// originally test_database.cpp, Maggie Johnson
 //
 // Description: Test driver for a database of Composer records.
 #include <iostream>
@@ -22,15 +22,13 @@ int main()
                                        "that he was poisoned.");
     comp3.Promote(2);
 
-    std::cout << std::endl
-         << "all Composers: " << std::endl
-         << std::endl;
+    std::cout << "-- All Composers --" << std::endl << std::endl;
     myDB.DisplayAll();
 
-    std::cout << "Load Beethoven: " << std::endl;
+    std::cout << "-- Load Beethoven --" << std::endl;
     Composer comp = myDB.GetComposer("Beethoven");
     comp.Display();
 
-    std::cout << std::endl << "Display sorted" << std::endl;
+    std::cout << std::endl << "-- Display Sorted --" << std::endl;
     myDB.DisplayByRank();
 }
