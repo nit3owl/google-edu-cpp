@@ -26,7 +26,7 @@ double AimShot() {
     double angle;
 
     std::cout << "What angle? ";
-    if(!(std::cin >> angle) || angle < 0 || angle > 360) {
+    if (!(std::cin >> angle) || angle < 0 || angle > 360) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Enter an value between 0 and 360." << std::endl;
@@ -37,13 +37,12 @@ double AimShot() {
 }
 
 bool CheckShot(int targetDist, int impact) {
-    bool hit;
-    if(impact == targetDist) {
-        hit = true;
-        std::cout << "You hit him!" << std::endl;
+    bool hit = false;
+    if (impact == targetDist) {
+        return true;        
     } else {
         std::string msg("");
-        if(impact > targetDist) {
+        if (impact > targetDist) {
             msg += "over";
         } else {
             msg += "under";
@@ -58,23 +57,26 @@ bool DefendPosition() {
     srand (time(NULL));
     int targetDist = std::rand() % 1000;
     double angle;
-    int shots = 0;
+    int shots = 10;
     bool hit = false;
 
-    std::cout << "The enemys is " << targetDist << " feet away!" << std::endl;
+    std::cout << "The enemy is " << targetDist << " feet away!" << std::endl;
 
     do {
         angle = AimShot();
-        if(angle >= 0) {
+        if (angle >= 0) {
             int impact = Fire((angle * kPi) / 180);
-            shots++;
+            shots--;
             hit = CheckShot(targetDist, impact);
-            if(hit) { 
+            if (hit) {
+                std::cout << "You hit the enemy!" << std::endl;
                 std::cout << "It took " << shots << " shots." << std::endl;
+            } else {
+                std::cout << shots << " shots remaining!" << std::endl;
             }
         }
         
-    } while(shots < 10 && hit != true);
+    } while(hit != true && shots > 0);
     
     return hit;
 }
@@ -84,7 +86,7 @@ int main() {
     int kills = 0;
     char playing;
     do {
-        if(DefendPosition()) {
+        if (DefendPosition()) {
             kills++;
             std::cout << "I see another one, care to shoot again? (y/n) " << std::endl;
             std::cin >> playing;
